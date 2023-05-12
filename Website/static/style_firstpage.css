@@ -1,0 +1,266 @@
+/* 
+* 網頁框架
+header 標題框架
+.header-content 標題內容
+.line 底線
+.ctn 有背景的連結選項
+*/
+
+/* 
+align-items 垂直位置
+justify-content 水平位置
+text-align 文字置中
+font-size: 4vmin; 文字大小與不隨螢幕大小變化?
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+body , html {
+    overflow-x: hidden;
+}
+
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    color: whitesmoke;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+}
+.nav-links li {
+    margin: 0px 30px;
+    cursor: pointer;
+}
+.nav-links li:hover{
+    background-color: #fc036b;
+    color: black;
+}
+
+/* 這是主標題 */
+header{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(back.JPG);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.header-content{
+    margin-bottom: 150px;
+    color:whitesmoke;
+    text-align: center;
+}
+/* 網頁副標題 */
+.header-content h2{
+    font-size: 4vmin;
+}
+
+.line {
+    width: 150px;
+    height: 4px;
+    background: #fc036b;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+/* 網頁主標題 */
+.header-content h1 {
+    font-size: 7vmin;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+/* 連結按鈕大小 */
+.ctn {
+    padding: 8px 15px;
+    background-color: #fc036b;
+    border-radius: 30px;
+    color: whitesmoke;
+}
+.menu-btn{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+/* 預算拉bar */
+.budget-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+.budget-block span{
+    width: 100%;
+}
+.inputbudget{
+    width: 100%;
+}
+
+
+/* 試算區 */
+form {
+    width: 90%;
+
+    margin:40px auto;
+    background-image: url(back.JPG);
+}
+section {
+    width: 90%;
+    margin:40px auto;
+    background-image: url(back.JPG);
+}
+.title {
+    text-align: center;
+    font-size: 4vmin;
+    color: whitesmoke;
+}
+.row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.row .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.row .col h4{
+    text-align: center;
+    font-size: 3vmin;
+    color: whitesmoke;
+    margin: 10px;
+}
+
+
+/* 下拉選單 */
+.select-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.select-container-empty{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+
+.select-box {
+    border: none;
+    background-color: blanchedalmond;
+    width: 100%;
+    font-size: 3vmin;
+    text-align: center;
+}
+
+/* 提交按鈕 */
+
+.submit_btn {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.submit_btn input{
+    width: 40%;
+    background-color: black;
+    color: whitesmoke;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 3vmin;
+}
+.number{
+    width: 40%;
+    color: whitesmoke;
+    text-align: center;
+}
+
+
+
+/* 手機模式 */
+
+@media only screen and (max-width:850px){
+    .menu-btn{
+        display: block;
+    }
+    .navbar{
+        padding: 0;
+    }
+    /* 標題置左上 */
+    .logo {
+        position: absolute;
+        top:30px;
+        left:30px;
+    }
+    .nav-links{
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        background: rgb(12, 7, 38);
+        margin-top: -900px;
+        transition: all 0.3s ease;
+    }
+    .mobile-menu {
+        margin-top: 0px;
+        border-bottom-right-radius: 30%;
+    }
+    .nav-links li {
+        margin: 30px auto;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .row .col {
+        margin-top: 0px;
+    }
+    .select-container-empty{
+        font-size: 0;
+        height: 0;
+        width: 0;
+        margin-bottom: 0px;
+    }
+    .submit_btn {
+        margin-bottom: 20px;
+    }
+    .select-box{
+        font-size: 4vmin;
+    }
+    .row .col h4{
+        font-size: 4vmin;
+    }
+
+}

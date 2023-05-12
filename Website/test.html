@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scroll Methods</title>
+  <style>
+    *{
+      padding:0;
+      margin:0;
+      box-sizing: border-box;
+    }
+    html{
+      font-size: 20px;
+      line-height: 1.7;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    section{
+      min-height: 200px;
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 2rem;
+      font-size: 1.6rem;
+    }
+    p{
+      padding: 0.5rem 1rem;
+    }
+    pre{
+      color: #fff;
+    }
+    #scroll-to{
+      background-color: hsl(270, 50%, 40%);
+      color: hsl(270, 50%, 10%);
+    }
+    #scroll-by{
+      background-color: hsl(20, 50%, 40%);
+      color: hsl(20, 50%, 10%);
+    }
+    #scroll-into-view{
+      background-color: hsl(100, 50%, 40%);
+      color: hsl(100, 50%, 10%);
+    }
+    #scroll-to-options{
+      background-color: hsl(220, 50%, 40%);
+      color: hsl(220, 50%, 10%);
+    }
+  </style>
+</head>
+<body>
+  <main role="main">
+    <section id="scroll-to">
+      <p>Move the top left point to the provided coordinates.</p>
+      <p><pre><code>Element.scrollTo(x, y);</code></pre></p>
+    </section>
+    <section id="scroll-by">
+      <p>Move the top left point of the element by the horizontal and vertical values provided.</p>
+      <p><pre><code>Element.scrollBy(x, y);</code></pre></p>
+    </section>
+    <section id="scroll-to-options">
+      <p>Alternate syntax for arguments for <code>Element.scrollTo()</code> and <code>Element.scrollBy()</code>. Not supported in IE, Edge, or Safari.</p>
+      <p><pre><code>const options={
+        top: "100px",
+        left: "100px",
+        behaviour: "smooth" 
+      }</code></pre></p>
+      <p><code>behaviour</code> defaults to "auto" but can be set to "smooth".</p>
+    </section>
+    <section id="scroll-into-view">
+      <p><pre><code>Element.scrollIntoView();</code></pre></p>
+      <p><pre><code>Element.scrollIntoView(true);</code></pre></p>
+      <p>The Boolean indicates whether or not to align top of element to top of the screen.</p>
+      <p>Options object version not supported in IE, Edge, or Safari.</p>
+      <p><pre><code>Element.scrollIntoView({
+        behaviour: "smooth" 
+        block: "start",
+        inline: "nearest"
+      });</code></pre></p>
+      <p><code>behaviour</code> defaults to "auto" but can be set to "smooth".</p>
+      <p><code>Block</code> defines vertical alignment. Value can be "start", "nearest", 
+          "center", or "end"</p>
+      <p><code>inline</code> defines horizontal alignment. Value can be "start", "nearest", 
+          "center", or "end"</p>
+    </section>
+  </main>
+  <script>
+    let to = document.getElementById('scroll-to');
+    let by = document.getElementById('scroll-by');
+    let into = document.getElementById('scroll-into-view');
+    to.addEventListener('click', (ev)=>{
+      document.documentElement.scrollTo(0, 250); //250px up from current position
+    });
+    by.addEventListener('click', (ev)=>{
+      document.documentElement.scrollBy(0, -250); //250px down from current position
+    });
+    into.addEventListener('click', (ev)=>{
+      by.scrollIntoView(true); //show the scroll-by element into view
+      // by.scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'end',
+      //   inline: "start"
+      // })
+    });
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_firstpage.css' ) }}">
+    <title>我想py電影</title>
+</head>
+
+<body>
+    <!-- 最上層選單 -->
+    <nav id="navbar" class="navbar">
+        <h1 class="logo">我想PY電影</h1>
+        <ul class="nav-links">
+            <li id="home-btn"><a href="#"></a>首頁</li>
+            <li id="predict-btn"><a href="#"></a>試算表</li>
+            <li id="dashboard-btn"><a href="#"></a>儀錶版</li>
+        </ul>
+        <!-- 手機版用的按鈕 要切成手機大小才能看 -->
+        <img src="/static/menu_btn.png" alt="按鈕" class="menu-btn">
+    </nav>
+    <!-- 網頁主標題和副標題 -->
+    <header>
+        <div class="header-content">
+            <h2>拍出你的電影</h2>
+            <div class="line"></div>
+            <h1>我想py電影</h1>
+            <!-- <a href="#" class="ctn">LearnMore</a> -->
+        </div>
+    </header>
+    <form id='predict-form' class="predict" method="get" action="/result">
+        <div class="title">
+            <h1>試算表</h1>
+        </div>
+        <div class="line"></div>
+        <div class="row">
+            <div class="col">
+                <h4>電影類別</h4>
+                <div class="select-container">
+                    <select id="genres0" name="genres0" class="select-box" required>
+                        <option value="" disabled selected>--請選擇電影類別一--</option>
+                        {% for key in keys_genres %}
+                        <option value="{{ key }}">{{ dict_genres[key] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="select-container">
+                    <select id="genres1" name="genres1" class="select-box" required>
+                        <option value="" disabled selected>--請選擇電影類別二--</option>
+                    </select>
+                </div>
+                <div class="select-container">
+                    <select id="genres2" name="genres2" class="select-box" required>
+                        <option value="" disabled selected>--請選擇電影類別三--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <h4>片商</h4>
+                <div class="select-container">
+                    <select id="company0" name="company0" class="select-box" required>
+                        <option value="" disabled selected>--請選擇片商一--</option>
+                        {% for key in keys_company %}
+                        <option value="{{ key }}">{{ dict_company[key] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="select-container">
+                    <select id="company1" name="company1" class="select-box" required>
+                        <option value="" disabled selected>--請選擇片商二--</option>
+                    </select>
+                </div>
+                <!-- 空的對齊用 -->
+                <div class="select-container-empty">
+                    <select class="select-box" disabled style=" background-color:transparent">
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <h4>導演與續集與預算</h4>
+                <div class="select-container">
+                    <select id="director" name="director" class="select-box" required>
+                        <option value="" disabled selected>--請選擇導演--</option>
+                        {% for key in keys_director %}
+                        <option value="{{ key }}">{{ dict_director[key] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="select-container">
+                    <select id="sequal" name="sequal" class="select-box" required>
+                        <option value="" disabled selected>--請選擇是否續集--</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </div>
+                <div class="budget-block"><span class="number">100萬</span>
+                    <input type="range" min='1000000' max='100000000' step='1000000' value="1000000" class="inputbudget"
+                        name="budget" id="budget">
+                </div>
+
+            </div>
+            <!-- 重置有小bug -->
+            <div class="col">
+                <h4 id="budget_ans">你輸入的預算:</h4>
+                <h4 id="revenue_ans">預測的票房:</span>
+                    <h4 id="margin_ans">預測的獲利:</h4>
+                    <div class="submit_btn">
+                        <input type="submit" value="預測">
+                        <input id='reset' type="reset" value="重置">
+                    </div>
+
+            </div>
+        </div>
+    </form>
+    <section id='dashboard' class="dashboard">
+        <div class='tableauPlaceholder' id='viz1682862064528' style='position: relative'><noscript><a href='#'><img
+                        alt='主頁儀表板 '
+                        src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;04&#47;0429_2&#47;sheet0&#47;1_rss.png'
+                        style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='site_root' value='' />
+                <param name='name' value='0429_2&#47;sheet0' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image'
+                    value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;04&#47;0429_2&#47;sheet0&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='zh-TW' />
+                <param name='filter' value='publish=yes' />
+            </object></div>
+        <script
+            type='text/javascript'>                    var divElement = document.getElementById('viz1682862064528'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.65) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1027px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    </section>
+
+
+    <script>
+        // 點menu btn連彈出視窗
+        const menubtn = document.querySelector('.menu-btn')
+        const navlinks = document.querySelector('.nav-links')
+        menubtn.addEventListener('click', () => {
+            navlinks.classList.toggle('mobile-menu')
+        })
+        // 預算的拉bar
+        const input = document.querySelector('.inputbudget');
+        const number = document.querySelector('.number');
+        const reset = document.querySelector('#reset')
+
+        // 點重置會更新拉bar數字
+        reset.addEventListener('click',() => {
+            number.textContent = '100萬'
+        })
+
+        input.addEventListener('input', () => {
+            if (input.value == 100000000) {
+                number.textContent = '1億'
+            } else {
+                number.textContent = (input.value) / 10000 + '萬';
+            }
+
+        })
+
+        // 快速移動畫面
+        // <li><a href="#" id="home-btn"></a>首頁</li>
+        //     <li><a href="#" id="predict-btn"></a>試算表</li>
+        //     <li><a href="#" id="dashboard-btn"></a>儀錶版</li>
+        const homebtn = document.getElementById('home-btn');
+        const predictbtn = document.getElementById('predict-btn');
+        const dashboardbtn = document.getElementById('dashboard-btn');
+
+        const predictform = document.getElementById('predict-form');
+        const home = document.getElementById('navbar');
+        const dashboard = document.getElementById('dashboard');
+
+        homebtn.addEventListener('click', () => {
+            home.scrollIntoView
+                ({
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: "start"
+                })
+        })
+        predictbtn.addEventListener('click', () => {
+            predictform.scrollIntoView
+                ({
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: "start"
+                })
+        })
+
+        dashboardbtn.addEventListener('click', () => {
+            dashboard.scrollIntoView
+                ({
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: "start"
+                })
+        })
+
+
+
+
+
+    </script>
+    <!-- jquery -->
+
+    <!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
+    <script src="https://cdn.staticfile.org/jquery/3.6.4/jquery.min.js"></script>
+    <!-- 文件不刷新測試 -->
+    <script>
+        $(document).ready(function () {
+            $('form').on('submit', function (event) {
+                $.ajax({
+                    data: {
+                        genres0: $('#genres0').val(),
+                        genres1: $('#genres1').val(),
+                        genres2: $('#genres2').val(),
+                        company0: $('#company0').val(),
+                        company1: $('#company1').val(),
+                        director: $('#director').val(),
+                        sequal: $('#sequal').val(),
+                        budget: $('#budget').val()
+                    },
+                    type: 'GET',
+                    url: '/result'
+                })
+                    .done(function (data) {
+                        $('#budget_ans').text("你輸入的預算:" + data.budget).show()
+                        $('#revenue_ans').text("預測的票房:" + data.revenue).show()
+                        $('#margin_ans').text("預測的獲利:" + data.margin).show()
+                    });
+                event.preventDefault();
+            });
+        });
+
+
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#genres0').change(function () {
+                var value = $(this).val();
+                $.get('/get_genres0', { 'value': value }, function (data) {
+                    // var options = '';
+                    var title = '--請選擇電影類別二--'
+                    var options = '<option value="" disabled selected >' + title + '</option>'
+                    $.each(data, function (index, item) {
+                        options += '<option value="' + item.value + '">' + item.text + '</option>';
+                    });
+
+                    $('#genres1').html('')
+                    // $('#select3').html('--請選擇電影類別三--')
+                    $('#genres1').append(options);
+                    // 點一重製三
+                    var title = '--請選擇電影類別三--'
+                    var options = '<option value="" disabled selected >' + title + '</option>'
+                    $('#genres2').html(options)
+                }, 'json');
+            });
+        });
+        $(document).ready(function () {
+            $('#genres1').change(function () {
+                var value = $(this).val();
+                $.get('/get_genres1', { 'value': value }, function (data) {
+                    var title = '--請選擇電影類別三--'
+                    var options = '<option value="" disabled selected>' + title + '</option>'
+                    $.each(data, function (index, item) {
+                        options += '<option value="' + item.value + '" >' + item.text + '</option>';
+                    });
+                    $('#genres2').html('')
+                    $('#genres2').append(options);
+                }, 'json');
+            });
+        });
+        $(document).ready(function () {
+            $('#company0').change(function () {
+                var value = $(this).val();
+                $.get('/get_company0', { 'value': value }, function (data) {
+                    // var options = '';
+                    var title = '--請選擇電影片商二--'
+                    var options = '<option value="" disabled selected>' + title + '</option>'
+                    $.each(data, function (index, item) {
+                        options += '<option value="' + item.value + '">' + item.text + '</option>';
+                    });
+
+                    $('#company1').html('')
+                    // $('#select3').html('--請選擇電影類別三--')
+                    $('#company1').append(options);
+                }, 'json');
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
